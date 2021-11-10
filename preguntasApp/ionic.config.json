@@ -1,0 +1,7 @@
+{
+  "name": "preguntasApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
