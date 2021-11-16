@@ -5,5 +5,53 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+  <!-- Categoria -->
+
+  <ion-segment scrollable mode="md" color="primary"
+  (ionChange)= "cambioCategoria($event)">
+    <ion-segment-button [value]="categoria" md="md"
+              *ngFor="let categoria of categorias">
+    <ion-label text-capitalize>{{categoria}}</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+    <!-- Temporizador -->
+
+    <ion-item color="success">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-label>TIEMPO</ion-label>
+            <ion-label>00:00:00</ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+<ion-content class="ion-padding">
+
+  <!-- Preguntas -->
+
+    <ion-list-header>
+      <ion-label>Resuelve las preguntas en el menor tiempo posible:</ion-label>
+    </ion-list-header>
+
+    <ion-card *ngFor="let entry of form; let i = index">
+      <ion-card-header>
+        <ion-card-subtitle>Categoria</ion-card-subtitle>
+        <ion-card-title>Pregunta {{i+1}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+          <ion-label>PREGUNTA...</ion-label>
+          <ion-item *ngFor="let entry of form">
+            <ion-label>{{entry}}</ion-label>
+            <ion-radio slot="end"  color="tertiary"></ion-radio>
+          </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+  <ion-button expand="block" fill="outline" color="primary">
+    FINALIZAR
+  </ion-button>
+
 </ion-content>
