@@ -5,6 +5,32 @@
   </ion-toolbar>
 </ion-header>
 
+<!-- Temporizador -->
+
+<ion-item color="secondary">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <h2>GANADORES TOP</h2>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-item>
+
 <ion-content>
+
+  <ion-card *ngFor="let entry of [1,1,1,1,1,1,1,1]; let i = index;">
+    <ion-item>
+      <ion-avatar slot="end">
+        <img src="../../assets/avatar.svg">
+      </ion-avatar>
+      <ion-label>
+        <h2>Usuario # <b>{{i+1}}</b></h2>
+        <h6>Nombre Completo </h6>
+        <h6>Categoria: . Repuestas: /20</h6>   
+        <h6>Tiempo: .</h6>
+      </ion-label>
+    </ion-item>
+  </ion-card>
 
 </ion-content>
