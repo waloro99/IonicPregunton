@@ -1,17 +1,79 @@
-<ion-header [translucent]="true">
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+    <ion-title>App Trivia - Registro</ion-title>
+    <ion-progress-bar value=".333"></ion-progress-bar>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <!--REGISTRO-->
+  <ion-card>
+
+    <ion-card-header>
+      <ion-card-subtitle color="primary">Persona</ion-card-subtitle>
+      <ion-card-title>REGISTRO</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-item>
+        <ion-label position="floating">Nombre completo</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Usuario</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+
+      <section>
+        <ion-button color="danger">
+          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </ion-button>
+        <ion-button color="success">
+          <ion-icon slot="icon-only" name="person-add-outline"></ion-icon>
+        </ion-button>
+      </section>
+
+    </ion-card-content>
+
+  </ion-card>
+
+  <!--INSTRUCCIONES-->
+
+  <ion-card>
+    <ion-slides pager="true" [options]="slideOpts">
+
+      <ion-slide>
+        <div class="slide">
+           <img src="../../assets/slidesregistro/instrucciones.png"/> 
+          <h2>Instrucciones</h2>
+          <p>El <b>registro</b> de la persona es para diferenciar a los distintos jugadores y mostrar sus tops personalizados.</p>
+        </div>
+      </ion-slide>
+  
+      <ion-slide>
+        <img src="../../assets/slidesregistro/preguntas.png"/>
+        <h2>Paso siguiente</h2>
+        <p> La sección de <b>Preguntas</b> se utiliza escogiendo una categoria en la cual tendran 20 preguntas que tienen que resolver en el menor tiempo posible.</p>
+      </ion-slide>
+  
+      <ion-slide>
+        <img src="../../assets/slidesregistro/top.png"/>
+        <h2>Paso final</h2>
+        <p>En la sección de <b>Top</b> los jugadores registrados podran ver el ranking en el que se encuentran dependiendo del tiempo y de las respuestas correctas que hayan realizado.</p>
+      </ion-slide>
+  
+      <ion-slide>
+        <img src="../../assets/slidesregistro/listo.png"/>
+        <h2>Listo para jugar?</h2>
+        <ion-button fill="clear">Continue <ion-icon slot="end" name="arrow-forward"></ion-icon></ion-button>
+      </ion-slide>
+  
+    </ion-slides>
+    
+  </ion-card>
+
 </ion-content>
+
