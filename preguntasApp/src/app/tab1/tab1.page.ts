@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Output, Input } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { Usuarios } from '../interfaces/interfaces';
+import { DataLocalService } from '../services/data-local.service';
 
 @Component({
   selector: 'app-tab1',
@@ -14,12 +15,19 @@ export class Tab1Page {
     speed: 400
   };
 
-  personas: Array<Usuarios>[] = [];
-  persona: Usuarios[] = [];
+  persona: Usuarios = {
+    nombre: '',
+    usuario: '',
+    respuestas: 0,
+    tiempoM: 0,
+    tiempoS: 0,
+    categoria: ''
+  };
   nombre: string = null;
   usuario: string = null;
 
-  constructor(private toastCtrl: ToastController) {}
+  constructor(private toastCtrl: ToastController,
+              private psCtrl: DataLocalService ) {}
 
   guardarDatos(){
     if (this.nombre === null || this.usuario === null) {
@@ -28,9 +36,18 @@ export class Tab1Page {
       return;
     }
     
+    this.persona.nombre = this.nombre;
+    this.persona.usuario = this.usuario;
+    this.persona.categoria = 'NA';
+    this.persona.tiempoM = 0;
+    this.persona.tiempoS = 0;
+    this.persona.respuestas = 0;
+    this.psCtrl.guardarUsuario(this.persona);
+    console.log('xd');
     //envia mensaje de que se ingreso
     let msg= 'Se agrego el usuario ' + this.usuario + ' exitosamente!';
     this.presentToast(msg);
+    return;
   }
 
   borrarDatos(){

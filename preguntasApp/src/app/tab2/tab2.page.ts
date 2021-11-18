@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { IonSegment, ToastController } from '@ionic/angular';
 import { PreguntasService } from '../services/preguntas.service';
-import { ContenidoPreguntas, Preguntas } from '../interfaces/interfaces';
+import { Preguntas } from '../interfaces/interfaces';
 import { timer } from 'rxjs';
 
 @Component({
@@ -10,7 +10,6 @@ import { timer } from 'rxjs';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page implements OnInit{
-
 //CONTADOR
   hours: number = 0;
   minutes: number = 0;
@@ -103,9 +102,15 @@ export class Tab2Page implements OnInit{
       this.presentToast(msg);
     }else{
       this.clock.unsubscribe();
-      console.log('Tiempo min: ' + this.minutes + ' seg: ' + this.seconds);
-      console.log(this.buenasRes)
+      //console.log('Tiempo min: ' + this.minutes + ' seg: ' + this.seconds);
+      //console.log(this.buenasRes)
+      // this.persona.categoria = this.selectCategoria;
+      // this.persona.respuestas = this.buenasRes;
+      // this.persona.tiempoM = this.minutes;
+      // this.persona.tiempoS = this.seconds;
       this.flag_categoria = false;
+      let msg= 'Felicidades, Revise su Top!!!';
+      this.presentToast(msg);
     }
   }
 

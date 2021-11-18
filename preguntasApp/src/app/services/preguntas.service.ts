@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ContenidoPreguntas } from '../interfaces/interfaces';
+import { ContenidoPreguntas, Usuarios } from '../interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,7 @@ export class PreguntasService {
   categoriaActual = 0;
 
   constructor( private http: HttpClient) { }
+
 
   getFeature(){
     return this.http.get<ContenidoPreguntas>(`https://opentdb.com/api.php?amount=30&difficulty=easy&type=multiple`);
@@ -21,5 +22,7 @@ export class PreguntasService {
     }
     return this.http.get<ContenidoPreguntas>(`https://opentdb.com/api.php?amount=20&category=${categoria}&difficulty=easy&type=multiple`);
   }
+
+  
 
 }
