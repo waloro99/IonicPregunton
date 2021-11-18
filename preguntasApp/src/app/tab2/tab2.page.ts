@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonSegment } from '@ionic/angular';
+import { IonSegment, ToastController } from '@ionic/angular';
 import { PreguntasService } from '../services/preguntas.service';
 import { ContenidoPreguntas, Preguntas } from '../interfaces/interfaces';
 import { timer } from 'rxjs';
@@ -12,16 +12,13 @@ import { timer } from 'rxjs';
 export class Tab2Page implements OnInit{
 
 //CONTADOR
-_second = 1000;
-  _minute = this._second * 60;
-  _hour = this._minute * 60;
-  end: any;
-  now: any;
-  hours: any;
-  minutes: any;
-  seconds: any;
-  source = timer(0, 1000);
+  hours: number = 0;
+  minutes: number = 0;
+  seconds: number = 0;
+  source = timer(1000, 1000);
   clock: any;
+  flag_time: boolean = false;
+  flag_reiniciar: boolean = false; 
 //FIN CONTADOR
 
 
@@ -31,31 +28,48 @@ _second = 1000;
   preguntas: Preguntas[] = [];
   selectCategoria = '';
   numberCate: number = 21;
-  constructor(private preguntasService: PreguntasService) {}
+  constructor(private preguntasService: PreguntasService,
+              private toastCtrl: ToastController) {}
 
   ngOnInit(){
    // this.preguntasService.getFeature()
    // .subscribe(console.log);
-   this.clock = this.source.subscribe(t => {
-    this.now = new Date();
-    this.end = new Date('01/01/' + (this.now.getFullYear() + 1) +' 00:00');
-    this.showDate();
-  });
+   
   }
 
   //tiempo
-  showDate(){
-    let distance = this.end - this.now;
-    this.hours = Math.floor((distance % this._hour) / this._hour);
-    this.minutes = Math.floor((distance % this._hour) / this._minute);
-    this.seconds = Math.floor((distance % this._minute) / this._second);
+  Reloj(){
+    this.clock = this.source.subscribe((t: number) => {
+      if (this.flag_time === false) {
+        this.seconds = t;
+        if (this.seconds === 59) {
+          if (this.minutes === 59) {
+            this.flag_time = true;
+            return;
+          }
+          this.clock.unsubscribe();
+          this.seconds = 0;
+          this.minutes += 1;
+          this.Reloj();
+        }
+      }
+    });
   }
 
+  //categoria
   cambioCategoria(event){
-    this.preguntas = [];
-    this.selectCategoria = event.detail.value;
-    this.cargarNoticias(event.detail.value);
-    //console.log(event.detail.value);
+    if (this.flag_reiniciar === false) {
+      this.preguntas = [];
+      this.selectCategoria = event.detail.value;
+      this.cargarNoticias(event.detail.value);
+      this.flag_reiniciar = true;
+      let msg= 'Tiene 60 minutos, suerte!';
+      this.presentToast(msg);
+      this.Reloj();
+    }else{
+      window.location.reload();
+      this.flag_reiniciar = false;
+    }
   }
 
   cargarNoticias(categoria: string, event ?){
@@ -77,6 +91,15 @@ _second = 1000;
       //console.log(resp.results);
       this.preguntas.push(...resp.results);
     });
+  }
+
+  //envia mensaje
+  async presentToast(mensaje: string) {
+    const toast = await this.toastCtrl.create({
+      message: mensaje,
+      duration: 2000
+    });
+    toast.present();
   }
 
 }
