@@ -19,16 +19,16 @@
 
 <ion-content>
 
-  <ion-card *ngFor="let entry of [1,1,1,1,1,1,1,1]; let i = index;">
+  <ion-card *ngFor="let entry of personas; let i = index;">
     <ion-item>
       <ion-avatar slot="end">
         <img src="../../assets/avatar.svg">
       </ion-avatar>
       <ion-label>
-        <h2>Usuario # <b>{{i+1}}</b></h2>
-        <h6>Nombre Completo </h6>
-        <h6>Categoria: . Repuestas: /20</h6>   
-        <h6>Tiempo: .</h6>
+        <h2>{{entry.usuario}} # <b>{{i+1}}</b></h2>
+        <h6>{{entry.nombre}} </h6>
+        <h6>Categoria: {{entry.categoria}}. Repuestas: {{entry.respuestas}}/20</h6>   
+        <h6>Tiempo: {{entry.tiempoM}} min y {{entry.tiempoS}} seg.</h6>
       </ion-label>
     </ion-item>
   </ion-card>

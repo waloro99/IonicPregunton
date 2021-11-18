@@ -14,6 +14,11 @@ export class DataLocalService {
     this.cargarUsuarios();
   }
 
+  async obtenerUsuarios(){
+    await this.cargarUsuarios();
+    return this.personas;
+  }
+
 
   guardarUsuario( usuario: Usuarios){
 

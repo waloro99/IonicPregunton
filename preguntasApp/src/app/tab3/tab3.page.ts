@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
+import { DataLocalService } from '../services/data-local.service';
+import { Usuarios } from '../interfaces/interfaces';
 
 @Component({
   selector: 'app-tab3',
@@ -7,6 +9,14 @@ import { Component } from '@angular/core';
 })
 export class Tab3Page {
 
-  constructor() {}
+  personas: Usuarios[] = [];
+
+  constructor(private psCtrl: DataLocalService) {
+    
+  }
+
+  async ionViewWillEnter(){
+    this.personas = await this.psCtrl.obtenerUsuarios();
+  }
 
 }
