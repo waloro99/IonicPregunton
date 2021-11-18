@@ -9,6 +9,7 @@ ion-segment ion-segment-button ion-label{
 ion-grid ion-row ion-col ion-label{
     font-weight: normal;
     font-weight: bold;
+    margin-left: 13%;
 }
 
 ion-segment{
@@ -22,4 +23,69 @@ ion-item {
     margin-top: 2%;
     margin-left: 6%;
     margin-right: 6%;
+}
+
+//contador
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ul {
+    display: flex;
+    justify-content: center;
+}
+ul h3{
+    margin-right: 3%;
+    margin-top: 2%;
+    margin-bottom: 0%;
+    margin-left: -5%;
+    font-weight: bold;
+}
+
+.coming-soon {
+    width: 100%;
+}
+
+.time-countdown ul {
+    margin: 0 auto;
+}
+
+.time-countdown ul li.count-bg-two {
+    background: white;
+    border: black 2px solid;
+}
+
+.time-countdown ul li.count-bg-three {
+    background: white;
+    border: black 2px solid;
+}
+
+.time-countdown ul li.count-bg-four {
+    background: white;
+    border: black 2px solid;
+    margin-right: 4%;
+}
+
+.time-countdown ul li {
+    width: 20%;
+    margin-right: 4%;
+    text-align: center;
+    display: inline-block;
+    padding: 10px 5px;
+    color: #fff;
+}
+
+.radius {
+    border-radius: 5px;
+}
+
+.time-countdown ul li span {
+    color: black;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    line-height: 10px;
+    font-weight: 10;
+    display: block;
 }

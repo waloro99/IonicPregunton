@@ -21,8 +21,18 @@
       <ion-grid>
         <ion-row>
           <ion-col>
-            <ion-label>TIEMPO</ion-label>
-            <ion-label>00:00:00</ion-label>
+            <section>
+              <div class="coming-soon">
+                  <div class="time-countdown">
+                      <ul>
+                          <h3>TIEMPO</h3>
+                          <li class="count-bg-two radius"><span id="hours">{{hours}}</span></li>
+                          <li class="count-bg-three radius"><span id="minutes">{{minutes}}</span></li>
+                          <li class="count-bg-four radius"><span id="seconds">{{seconds}}</span></li>
+                      </ul>
+                  </div>
+              </div>
+          </section>
           </ion-col>
         </ion-row>
       </ion-grid>
