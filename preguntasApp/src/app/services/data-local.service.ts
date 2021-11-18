@@ -38,6 +38,15 @@ export class DataLocalService {
     return !existe;
   }
 
+  async modificarUsuario(categoria: string, min: number, seg: number, res: number){
+    await this.cargarUsuarios();
+    this.personas[this.personas.length -1].categoria = categoria;
+    this.personas[this.personas.length -1].tiempoM = min;
+    this.personas[this.personas.length -1].tiempoS = seg;
+    this.personas[this.personas.length -1].respuestas = res;
+    this.storage.set('usuarios', this.personas);
+  }
+
   async cargarUsuarios(){
     this.storage.create();
     const personas = await this.storage.get('usuarios');
@@ -48,6 +57,7 @@ export class DataLocalService {
 
   async existeUsuario(user){
     await this.cargarUsuarios();
+    console.log(user);
     const existe = this.personas.find(person => 
       person.usuario === user);
     return (existe) ? true:false;

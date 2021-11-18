@@ -42,12 +42,18 @@ export class Tab1Page {
     this.persona.tiempoM = 0;
     this.persona.tiempoS = 0;
     this.persona.respuestas = 0;
-    this.psCtrl.guardarUsuario(this.persona);
-    console.log('xd');
-    //envia mensaje de que se ingreso
-    let msg= 'Se agrego el usuario ' + this.usuario + ' exitosamente!';
-    this.presentToast(msg);
-    return;
+    let existe = this.psCtrl.existeUsuario(this.persona.usuario);
+    if (!existe) {
+      let msg= 'Ese usuario ya existe';
+      this.presentToast(msg);
+      return;
+    }else{
+      this.psCtrl.guardarUsuario(this.persona);
+      //envia mensaje de que se ingreso
+      let msg= 'Se agrego el usuario ' + this.usuario + ' exitosamente!';
+      this.presentToast(msg);
+      return;
+    }
   }
 
   borrarDatos(){

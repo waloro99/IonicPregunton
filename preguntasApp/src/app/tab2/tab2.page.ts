@@ -3,6 +3,7 @@ import { IonSegment, ToastController } from '@ionic/angular';
 import { PreguntasService } from '../services/preguntas.service';
 import { Preguntas } from '../interfaces/interfaces';
 import { timer } from 'rxjs';
+import { DataLocalService } from '../services/data-local.service';
 
 @Component({
   selector: 'app-tab2',
@@ -32,7 +33,8 @@ export class Tab2Page implements OnInit{
   selectCategoria = '';
   numberCate: number = 21;
   constructor(private preguntasService: PreguntasService,
-              private toastCtrl: ToastController) {}
+              private toastCtrl: ToastController,
+              private psCtrl: DataLocalService) {}
 
   ngOnInit(){
   }
@@ -108,6 +110,7 @@ export class Tab2Page implements OnInit{
       // this.persona.respuestas = this.buenasRes;
       // this.persona.tiempoM = this.minutes;
       // this.persona.tiempoS = this.seconds;
+      this.psCtrl.modificarUsuario(this.selectCategoria,this.minutes,this.seconds,this.buenasRes);
       this.flag_categoria = false;
       let msg= 'Felicidades, Revise su Top!!!';
       this.presentToast(msg);
