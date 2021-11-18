@@ -19,19 +19,21 @@
 
       <ion-item>
         <ion-label position="floating">Nombre completo</ion-label>
-        <ion-input></ion-input>
+        <ion-input type="text"
+                   [(ngModel)]="nombre"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating">Usuario</ion-label>
-        <ion-input></ion-input>
+        <ion-input type="text"
+                   [(ngModel)]="usuario"></ion-input>
       </ion-item>
 
       <section>
-        <ion-button color="danger">
+        <ion-button color="danger"  (ionFocus)="borrarDatos()">
           <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
         </ion-button>
-        <ion-button color="success">
+        <ion-button color="success"  (ionFocus)="guardarDatos()">
           <ion-icon slot="icon-only" name="person-add-outline"></ion-icon>
         </ion-button>
       </section>
@@ -68,7 +70,10 @@
       <ion-slide>
         <img src="../../assets/slidesregistro/listo.png"/>
         <h2>Listo para jugar?</h2>
-        <ion-button fill="clear">Continue <ion-icon slot="end" name="arrow-forward"></ion-icon></ion-button>
+        <ion-tab-button tab="tab2">
+          <ion-icon name="arrow-forward-outline" color="primary"></ion-icon>
+          <ion-label color="primary">CONTINUE</ion-label>
+        </ion-tab-button>
       </ion-slide>
   
     </ion-slides>
