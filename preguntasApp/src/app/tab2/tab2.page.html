@@ -52,27 +52,32 @@
         <ion-card-title>Pregunta {{i+1}}</ion-card-title>
       </ion-card-header>
       <ion-card-content>
+        <ion-radio-group (ionChange)="obtenerRes($event)">
           <ion-label>{{entry.question}}</ion-label>
           <ion-item>
             <ion-label>{{entry.incorrect_answers[1]}}</ion-label>
-            <ion-radio slot="end"  color="tertiary"></ion-radio>
+            <ion-radio slot="end"  color="primary" mode="ios"></ion-radio>
           </ion-item>
           <ion-item>
             <ion-label>{{entry.incorrect_answers[0]}}</ion-label>
-            <ion-radio slot="end"  color="tertiary"></ion-radio>
+            <ion-radio slot="end"  color="primary" mode="ios"></ion-radio>
           </ion-item>
           <ion-item>
             <ion-label>{{entry.correct_answer}}</ion-label>
-            <ion-radio slot="end"  color="tertiary"></ion-radio>
+            <ion-radio slot="end"  color="primary" mode="ios"></ion-radio>
           </ion-item>
           <ion-item>
             <ion-label>{{entry.incorrect_answers[2]}}</ion-label>
-            <ion-radio slot="end"  color="tertiary"></ion-radio>
+            <ion-radio slot="end"  color="primary" mode="ios"></ion-radio>
           </ion-item>
+        </ion-radio-group>
       </ion-card-content>
     </ion-card>
 
-  <ion-button expand="block" fill="outline" color="primary">
+  <ion-button expand="block" 
+              fill="outline" 
+              color="primary"
+              (ionFocus)="guardarDatos()">
     FINALIZAR
   </ion-button>
 

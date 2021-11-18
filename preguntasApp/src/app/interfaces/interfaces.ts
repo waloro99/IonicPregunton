@@ -16,6 +16,7 @@ export interface Usuarios{
     nombre: string;
     usuario: string;
     respuestas: number;
-    tiempo: number;
+    tiempoM: number;
+    tiempoS: number;
     categoria: string;
 }

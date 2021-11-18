@@ -19,7 +19,11 @@ export class Tab2Page implements OnInit{
   clock: any;
   flag_time: boolean = false;
   flag_reiniciar: boolean = false; 
-//FIN CONTADOR
+
+//Guardar Respuestas
+  buenasRes: number = 0;
+
+  flag_categoria: boolean = false; 
 
 
   @ViewChild(IonSegment, { static: true }) segment: IonSegment;
@@ -32,9 +36,6 @@ export class Tab2Page implements OnInit{
               private toastCtrl: ToastController) {}
 
   ngOnInit(){
-   // this.preguntasService.getFeature()
-   // .subscribe(console.log);
-   
   }
 
   //tiempo
@@ -59,9 +60,10 @@ export class Tab2Page implements OnInit{
   //categoria
   cambioCategoria(event){
     if (this.flag_reiniciar === false) {
+      this.flag_categoria = true;
       this.preguntas = [];
       this.selectCategoria = event.detail.value;
-      this.cargarNoticias(event.detail.value);
+      this.cargarPreguntas(event.detail.value);
       this.flag_reiniciar = true;
       let msg= 'Tiene 60 minutos, suerte!';
       this.presentToast(msg);
@@ -72,7 +74,7 @@ export class Tab2Page implements OnInit{
     }
   }
 
-  cargarNoticias(categoria: string, event ?){
+  cargarPreguntas(categoria: string, event ?){
     if(categoria === 'History'){
       this.numberCate = 23;
     }else if (categoria === 'Books') {
@@ -91,6 +93,39 @@ export class Tab2Page implements OnInit{
       //console.log(resp.results);
       this.preguntas.push(...resp.results);
     });
+  }
+
+  //Guardar Datos de tiempo y respuestas buenas
+  guardarDatos(){
+    //si presiona el boton sin esoger categoria
+    if (this.flag_categoria === false) {
+      let msg= 'Escoga una categoria!!!';
+      this.presentToast(msg);
+    }else{
+      this.clock.unsubscribe();
+      console.log('Tiempo min: ' + this.minutes + ' seg: ' + this.seconds);
+      console.log(this.buenasRes)
+      this.flag_categoria = false;
+    }
+  }
+
+  //obtener los valores de los check
+  obtenerRes(event){
+    //console.log(event)
+    let radioSelect = event.detail.value.split('-');
+    let valorRadio = 0;
+    valorRadio = parseInt(radioSelect[2]);
+    if (valorRadio === 2 || valorRadio === 6 || valorRadio === 10 || valorRadio === 14 ) {
+      this.buenasRes += 1;
+    }else if (valorRadio === 18 || valorRadio === 22 || valorRadio === 26 || valorRadio === 30 ) {
+      this.buenasRes += 1;
+    }else if (valorRadio === 34 || valorRadio === 38 || valorRadio === 42 || valorRadio === 46 ) {
+      this.buenasRes += 1;
+    }else if (valorRadio === 50 || valorRadio === 54 || valorRadio === 58 || valorRadio === 62 ) {
+      this.buenasRes += 1;
+    }else if (valorRadio === 66 || valorRadio === 70 || valorRadio === 74 || valorRadio === 78 ) {
+      this.buenasRes += 1;
+    }
   }
 
   //envia mensaje
